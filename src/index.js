@@ -1,7 +1,7 @@
 import React, { useState, useEffcet } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import math from "mathjs";
+import Math from "mathjs";
 
 function Reddit() {
   const [posts, setPosts] = useState([]);
@@ -28,21 +28,18 @@ function Reddit() {
 // ReactDOM.render(<Reddit />, document.getElementById("root"));
 function CounterApp() {
   const [count, setCount] = useState(0);
-
+  const handleClick = (e) => {
+    try {
+      setCount(Math.eval(document.getElementById("xyz").value));
+    } catch (error) {
+      setCount("");
+    }
+  };
   return (
     <div>
-      count: {count}
-      <input id="input" defaultValue="1"></input>
-      <button
-        onClick={() => {
-          let abc = math.eval(
-            document.getElementById("input").getAttribute("value")
-          );
-          setCount(abc);
-        }}
-      >
-        calc
-      </button>
+      value: {count}
+      <input id="xyz" enterKeyHint="Math expression"></input>
+      <button onClick={handleClick}>calc</button>
     </div>
   );
 }
